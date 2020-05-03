@@ -5,6 +5,23 @@ import re
 import urllib
 from urllib.request import urlopen
 
+################################################################################
+
+parser = argparse.ArgumentParser(description='Download free access Springer '
+                                             'books.')
+parser.add_argument('path', type=str, help='path to save the books to, str')
+
+parser.add_argument('pages', type=int, help='ctotal number of pages to parse, '
+                                            'int')
+args = parser.parse_args()
+
+################################################################################
+
+PATH = args.path
+PAGES = args.pages
+
+################################################################################
+
 
 class SpringerBooks:
 	def __init__(self, bookpath, pages):
@@ -182,6 +199,6 @@ class SpringerBooks:
 
 
 if __name__ == "__main__":
-	s = SpringerBooks('D:/Temporary/books/', 2)
+	s = SpringerBooks(PATH, PAGES)
 	s.get_books()
 	s.create_catalog()
