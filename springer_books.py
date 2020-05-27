@@ -182,7 +182,10 @@ class SpringerBooks:
 		_html = urlopen('https://link.springer.com/search/page/1?facet-content'
 		                '-type=%22Book%22&package=openaccess').read().decode(
 							'utf-8')
-		pages_regex = re.compile('name\=\"total\-pages\" value=\"(/d*)"\/')
+		pages_regex = re.compile('name=\"total-pages\" value=\"(\d*)"\/')
+		test_str = 'typropoesdkj name="total-pages" value="10"/>'
+		self.print_debug(
+			'Trial info is {0}'.format(pages_regex.findall(test_str)[0]), 1)
 		self.print_debug('Page info is {0}'.format(pages_regex.findall(_html)[0]), 1)
 		self.pages = int(pages_regex.findall(_html)[0])
 
